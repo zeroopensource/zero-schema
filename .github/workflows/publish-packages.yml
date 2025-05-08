@@ -1,0 +1,57 @@
+name: Publish Monorepo Packages
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node (v20 LTS)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build packages
+        run: npx turbo run build
+
+      - name: Find changed packages
+        id: changed
+        run: |
+          echo "CHANGED_PACKAGES=$(npx turbo run build --dry=json | jq -r '.tasks[].package')" >> $GITHUB_ENV
+
+      - name: Publish changed packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          for pkg in $CHANGED_PACKAGES; do
+            echo "Publishing $pkg..."
+            cd packages/$pkg
+            if [ "$BRANCH_NAME" = "main" ]; then
+              npm version patch --no-git-tag-version
+              npm publish
+            elif [ "$BRANCH_NAME" = "dev" ]; then
+              npm version prerelease --preid=beta --no-git-tag-version
+              npm publish --tag beta
+            fi
+            VERSION=$(node -p "require('./package.json').version")
+            cd ../..
+
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            git add packages/$pkg/package.json
+            git commit -m "chore(release): $pkg@v$VERSION"
+            git tag $pkg@v$VERSION
+            git push origin $pkg@v$VERSION
+          done

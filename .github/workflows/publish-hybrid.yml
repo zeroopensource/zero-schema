@@ -1,0 +1,98 @@
+name: Publish to npm (monorepo or solo)
+
+# TODO: Fix issues, add changed packages checker
+# on:
+#   push:
+#     branches:
+#       - main
+#       - dev
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node (v20 LTS)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (if using turborepo)
+        run: |
+          if [ -f turbo.json ]; then
+            npx turbo run build
+          elif [ -f package.json ]; then
+            npm run build || echo "No build script, skipping"
+          fi
+
+      - name: Detect monorepo or solo
+        id: detect
+        run: |
+          if [ -d packages ]; then
+            echo "mode=monorepo" >> $GITHUB_OUTPUT
+          else
+            echo "mode=solo" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          MODE="${{ steps.detect.outputs.mode }}"
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          if [ "$MODE" = "monorepo" ]; then
+            for pkgPath in packages/*; do
+              if [ -f "$pkgPath/package.json" ]; then
+                echo "Publishing $pkgPath..."
+
+                cd "$pkgPath"
+                if [ "$BRANCH_NAME" = "main" ]; then
+                  npm version patch --no-git-tag-version
+                  npm publish
+                elif [ "$BRANCH_NAME" = "dev" ]; then
+                  npm version prerelease --preid=beta --no-git-tag-version
+                  npm publish --tag beta
+                fi
+                VERSION=$(node -p "require('./package.json').version")
+                PKG_NAME=$(node -p "require('./package.json').name" | sed 's/@//;s/\//-/g')
+
+                cd -
+
+                git add "$pkgPath/package.json"
+                git commit -m "chore(release): $PKG_NAME@v$VERSION"
+                git tag "$PKG_NAME@v$VERSION"
+                git push origin "$PKG_NAME@v$VERSION"
+              fi
+            done
+
+          elif [ "$MODE" = "solo" ]; then
+            echo "Publishing solo repo..."
+
+            if [ "$BRANCH_NAME" = "main" ]; then
+              npm version patch --no-git-tag-version
+              npm publish
+            elif [ "$BRANCH_NAME" = "dev" ]; then
+              npm version prerelease --preid=beta --no-git-tag-version
+              npm publish --tag beta
+            fi
+
+            VERSION=$(node -p "require('./package.json').version")
+            git add package.json package-lock.json
+            git commit -m "chore(release): v$VERSION"
+            git tag "v$VERSION"
+            git push origin "v$VERSION"
+
+          else
+            echo "❌ Error: Could not detect repo type (monorepo or solo)."
+            exit 1
+          fi
