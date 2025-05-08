@@ -1,10 +1,10 @@
 name: Publish Monorepo Packages
 
-on:
-  push:
-    branches:
-      - main
-      - dev
+# on:
+#   push:
+#     branches:
+#       - main
+#       - dev
 
 jobs:
   publish:
