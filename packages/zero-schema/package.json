@@ -1,6 +1,13 @@
 {
   "name": "@zeroopensource/zero-schema",
   "version": "0.0.1",
+  "files": [
+    "dist/**",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build:sqlite": "ts-node src/schemix/build-sqlite.ts",
     "build:postgresql": "ts-node src/schemix/build-postgresql.ts",
