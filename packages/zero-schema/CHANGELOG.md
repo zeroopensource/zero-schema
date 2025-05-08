@@ -1,5 +1,11 @@
 # @zeroopensource/zero-schema
 
+## 0.0.3
+
+### Patch Changes
+
+- [#19](https://github.com/zeroopensource/zero-schema/pull/19) [`d222db0`](https://github.com/zeroopensource/zero-schema/commit/d222db0467b2542d5a34583c0807f2e39b5122b0) Thanks [@jigz](https://github.com/jigz)! - feat(zero-schema): add MIT license and rename tags field
+
 ## 0.0.2
 
 ### Patch Changes
