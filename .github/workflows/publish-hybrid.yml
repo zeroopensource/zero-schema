@@ -73,7 +73,8 @@ jobs:
                 git push origin "$PKG_NAME@v$VERSION"
               fi
             done
-          else
+
+          elif [ "$MODE" = "solo" ]; then
             echo "Publishing solo repo..."
 
             if [ "$BRANCH_NAME" = "main" ]; then
@@ -89,4 +90,8 @@ jobs:
             git commit -m "chore(release): v$VERSION"
             git tag "v$VERSION"
             git push origin "v$VERSION"
+
+          else
+            echo "❌ Error: Could not detect repo type (monorepo or solo)."
+            exit 1
           fi
