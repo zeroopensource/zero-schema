@@ -1,10 +1,11 @@
 name: Publish to npm (monorepo or solo)
 
-on:
-  push:
-    branches:
-      - main
-      - dev
+# TODO: Fix issues, add changed packages checker
+# on:
+#   push:
+#     branches:
+#       - main
+#       - dev
 
 jobs:
   publish:
