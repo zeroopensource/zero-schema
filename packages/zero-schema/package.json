@@ -18,17 +18,18 @@
     "studio": "concurrently \"pnpm studio:sqlite\" \"pnpm studio:postgresql\""
   },
   "dependencies": {
-    "prisma": "6.7.0",
-    "@prisma/client": "6.7.0"
+    "prisma": "5.19.0",
+    "@prisma/client": "5.19.0",
+    "@pothos/core": "^3.32.1"
   },
   "devDependencies": {
-    "concurrently": "9.1.2",
-    "dotenv-cli": "8.0.0",
-    "@prisma/studio": "0.511.0",
-    "schemix": "1.15.0",
-    "ts-node": "10.9.2",
-    "fs-extra": "11.3.0",
-    "@types/fs-extra": "11.0.4",
-    "@zero-company/zero-types": "1.0.6"
+    "concurrently": "^8.2.0",
+    "dotenv-cli": "^7.2.1",
+    "@prisma/studio": "^0.502.0",
+    "schemix": "^1.14.1",
+    "ts-node": "^10.9.1",
+    "fs-extra": "^11.1.1",
+    "@types/fs-extra": "^11.0.1",
+    "@zero-company/zero-types": "^1.0.6"
   }
 }
