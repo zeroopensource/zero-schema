@@ -14,6 +14,7 @@ export default createModel(BlogPostV1Model => {
     .dateTime('lastModifiedDate', { optional: true })
     .string('title')
     .string('subTitle')
+    .string('tags')
     .string('content')
     .string('excerpt', { optional: true })
     .boolean('isPublished', { default: false })
