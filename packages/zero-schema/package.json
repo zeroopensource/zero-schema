@@ -1,0 +1,34 @@
+{
+  "name": "@zeroopensource/zero-schema",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build:sqlite": "ts-node src/schemix/build-sqlite.ts",
+    "build:postgresql": "ts-node src/schemix/build-postgresql.ts",
+    "build": "pnpm build:sqlite && pnpm build:postgresql",
+    "generate:sqlite": "prisma generate --schema dist/sqlite.prisma",
+    "generate:postgresql": "prisma generate --schema dist/postgresql.prisma",
+    "generate": "pnpm generate:sqlite && pnpm generate:postgresql",
+    "test": "",
+    "migrate:sqlite": "dotenv -e .env.sqlite.local.dev -- prisma db push --schema dist/sqlite.prisma",
+    "migrate:postgresql": "dotenv -e .env.postgresql.local.dev -- prisma db push --schema dist/postgresql.prisma",
+    "migrate": "pnpm migrate:sqlite && pnpm migrate:postgresql",
+    "studio:postgresql": "dotenv -e .env.postgresql.local.dev -- npx prisma studio --schema dist/postgresql.prisma",
+    "studio:sqlite": "dotenv -e .env.sqlite.local.dev -- npx prisma studio --schema dist/sqlite.prisma",
+    "studio": "concurrently \"pnpm studio:sqlite\" \"pnpm studio:postgresql\""
+  },
+  "dependencies": {
+    "prisma": "6.7.0",
+    "@prisma/client": "6.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.2",
+    "dotenv-cli": "8.0.0",
+    "@prisma/studio": "0.511.0",
+    "schemix": "1.15.0",
+    "ts-node": "10.9.2",
+    "fs-extra": "11.3.0",
+    "@types/fs-extra": "11.0.4",
+    "@zero-company/zero-types": "1.0.6"
+  }
+}
