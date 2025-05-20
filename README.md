@@ -1,7 +1,7 @@
 # zero-schema
 
 **Reusable, composable schemas for modern TypeScript applications.**  
-Brought to you by [zeroopensource](https://github.com/zeroopensource)
+Brought to you by Zero Open Source™ (aka ZeroOpenSource™; Zero)
 
 ---
 
@@ -14,7 +14,6 @@ Brought to you by [zeroopensource](https://github.com/zeroopensource)
 - 🧱 [Payload CMS](https://payloadcms.com/)
 - 🏛️ [Keystone](https://keystonejs.com/)
 - 🧪 [Zod](https://github.com/colinhacks/zod)
-
 
 Whether you're building a blog, a product catalog, or a user system, `zero-schema` provides consistent, reusable schemas and tools to streamline your development workflow.
 
