@@ -1,10 +1,19 @@
 {
   "name": "@zeroopensource/zero-schema",
   "version": "0.0.4",
-  "files": [
-    "dist/**",
-    "LICENSE"
-  ],
+  "description": "Reusable generalized schemas for various databases and ORMs",
+  "author": "Jigz <jigzpalillo@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/zeroopensource/zero-schema",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeroopensource/zero-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zeroopensource/zero-schema/issues"
+  },
+  "type": "module",
+  "types": "./dist/index.d.cts",
   "publishConfig": {
     "access": "public"
   },
