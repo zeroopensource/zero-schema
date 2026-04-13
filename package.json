@@ -1,5 +1,5 @@
 {
-  "name": "zero-schema",
+  "name": "zero-schema-mono",
   "private": true,
   "scripts": {
     "build": "turbo run build",
