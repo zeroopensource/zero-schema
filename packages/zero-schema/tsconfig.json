@@ -5,6 +5,13 @@
     "moduleDetection": "force",
     "module": "preserve",
     "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/root/*": ["./*"],
+      "@/src/*": ["./src/*"],
+      "@/shadcn/*": ["./src/shadcn/*"],
+      "fumadocs-mdx:collections/*": ["./.source/*"]
+    },
     "resolveJsonModule": true,
     "types": ["node"],
     "strict": true,
