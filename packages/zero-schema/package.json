@@ -1,42 +1,56 @@
 {
   "name": "@zeroopensource/zero-schema",
   "version": "0.0.4",
-  "files": [
-    "dist/**",
-    "LICENSE"
-  ],
+  "description": "Reusable generalized schemas for various databases and ORMs",
+  "author": "Jigz <jigzpalillo@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/zeroopensource/zero-schema",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeroopensource/zero-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zeroopensource/zero-schema/issues"
+  },
+  "type": "module",
+  "types": "./dist/index.d.cts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prepack": "cpx ../../README.md ./",
-    "build:sqlite": "ts-node src/schemix/build-sqlite.ts",
-    "build:postgresql": "ts-node src/schemix/build-postgresql.ts",
-    "build": "pnpm build:sqlite && pnpm build:postgresql",
-    "generate:sqlite": "prisma generate --schema dist/sqlite.prisma",
-    "generate:postgresql": "prisma generate --schema dist/postgresql.prisma",
-    "generate": "pnpm generate:sqlite && pnpm generate:postgresql",
-    "test": "",
+    "prepack": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\"",
+    "lint": "cross-env TIMING=1 eslint \"**/*.ts*\"",
+    "build": "tsdown",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
     "migrate:sqlite": "dotenv -e .env.sqlite.local.dev -- prisma db push --schema dist/sqlite.prisma",
-    "migrate:postgresql": "dotenv -e .env.postgresql.local.dev -- prisma db push --schema dist/postgresql.prisma",
-    "migrate": "pnpm migrate:sqlite && pnpm migrate:postgresql",
-    "studio:postgresql": "dotenv -e .env.postgresql.local.dev -- npx prisma studio --schema dist/postgresql.prisma",
-    "studio:sqlite": "dotenv -e .env.sqlite.local.dev -- npx prisma studio --schema dist/sqlite.prisma",
-    "studio": "concurrently \"pnpm studio:sqlite\" \"pnpm studio:postgresql\""
+    "migrate:postgresql": "dotenv -e .env.postgresql.local.dev -- prisma db push --schema dist/postgresql.prisma"
   },
   "dependencies": {
-    "prisma": "5.19.0",
-    "@prisma/client": "5.19.0",
-    "@pothos/core": "^3.32.1"
+    "prisma": "^7.7.0",
+    "@prisma/client": "^7.7.0",
+    "@zeroopensource/zero-cli": "latest",
+    "@zeroopensource/zero-id": "latest",
+    "drizzle-orm": "^0.45.2",
+    "drizzle-zod": "^0.8.3",
+    "@hono/zod-openapi": "^1.0.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
     "dotenv-cli": "^7.2.1",
     "@prisma/studio": "^0.502.0",
-    "schemix": "^1.14.1",
     "ts-node": "^10.9.1",
     "fs-extra": "^11.1.1",
-    "@types/fs-extra": "^11.0.1",
-    "@zero-company/zero-types": "^1.0.6"
+    "@types/fs-extra": "^11.0.1"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   }
 }
