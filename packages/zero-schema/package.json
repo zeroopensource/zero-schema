@@ -31,7 +31,7 @@
     "@prisma/client": "^7.7.0",
     "@zeroopensource/zero-cli": "latest",
     "@zeroopensource/zero-id": "latest",
-    "drizzle-orm": "^0.45.1",
+    "drizzle-orm": "^0.45.2",
     "drizzle-zod": "^0.8.3",
     "@hono/zod-openapi": "^1.0.2"
   },
