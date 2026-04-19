@@ -1,5 +1,11 @@
 # @zeroopensource/zero-schema
 
+## 0.0.5
+
+### Patch Changes
+
+- [#25](https://github.com/zeroopensource/zero-schema/pull/25) [`5387716`](https://github.com/zeroopensource/zero-schema/commit/538771690ad6ee17fcd818ef31b1f9034cf48a79) Thanks [@jigz](https://github.com/jigz)! - Update release workflow
+
 ## 0.0.4
 
 ### Patch Changes
