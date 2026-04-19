@@ -29,6 +29,9 @@ importers:
       prisma:
         specifier: ^7.7.0
         version: 7.7.0(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(typescript@5.8.3)
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@prisma/studio':
         specifier: ^0.502.0
@@ -48,9 +51,6 @@ importers:
       ts-node:
         specifier: ^10.9.1
         version: 10.9.2(@types/node@22.15.21)(typescript@5.8.3)
-      zod:
-        specifier: ^4.0.14
-        version: 4.3.6
 
 packages:
 
