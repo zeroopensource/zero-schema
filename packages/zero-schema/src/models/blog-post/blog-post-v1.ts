@@ -1,9 +1,9 @@
 import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
-import { MetadataV1Select } from "../metadata/metadata-v1";
+import { MetadataV1 } from "../metadata/metadata-v1";
 
 export const BlogPostV1 = z.strictObject({
-  ...MetadataV1Select.shape,
+  ...MetadataV1.shape,
   id: z.string(),
   zeroId: z.string().optional(),
   name: z.string(),
