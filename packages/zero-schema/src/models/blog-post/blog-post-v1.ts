@@ -1,7 +1,8 @@
+import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 import { MetadataV1Select } from "../metadata/metadata-v1";
 
-export const BlogPostV1Select = z.strictObject({
+export const BlogPostV1 = z.strictObject({
   ...MetadataV1Select.shape,
   id: z.string(),
   zeroId: z.string().optional(),
@@ -9,25 +10,11 @@ export const BlogPostV1Select = z.strictObject({
   tags: z.array(z.string()),
   body: z.string().optional(),
 });
-export type BlogPostV1SelectType = z.infer<typeof BlogPostV1Select>;
+export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
 
-export const BlogPostV1Insert = BlogPostV1Select.omit({
-  createdAt: true,
-  updatedAt: true,
-});
-export type BlogPostV1InsertType = z.infer<typeof BlogPostV1Insert>;
-
-export const BlogPostV1SampleInsert: BlogPostV1InsertType = {
-  id: "123",
-  zeroId: "456",
-  name: "My Blog Post",
-  tags: ["technology", "programming"],
-  body: "This is the content of my blog post.",
-};
-
-export const BlogPostV1SampleSelect: BlogPostV1SelectType = {
-  id: "123",
-  zeroId: "456",
+export const BlogPostV1Sample: BlogPostV1Type = {
+  id: crypto.randomUUID(),
+  zeroId: generateZeroId(),
   name: "My Blog Post",
   tags: ["technology", "programming"],
   body: "This is the content of my blog post.",

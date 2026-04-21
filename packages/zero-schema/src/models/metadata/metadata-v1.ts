@@ -5,4 +5,7 @@ export const MetadataV1Select = z.strictObject({
   updatedAt: z.date(),
 });
 
-export const MetadataV1Sample = {};
+export const MetadataV1Sample = {
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};

@@ -1,3 +1,4 @@
+import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 import { MetadataV1Select } from "../metadata/metadata-v1";
 
@@ -19,8 +20,8 @@ export const TagV1Insert = TagV1Select.omit({
 export type TagV1InsertType = z.infer<typeof TagV1Insert>;
 
 export const TagV1SampleInsert: TagV1InsertType = {
-  id: "123",
-  zeroId: "456",
+  id: crypto.randomUUID(),
+  zeroId: generateZeroId(),
   name: "laptop",
   tagSuggestions: ["pc"],
   keywords: ["laptops", "computer", "computers", "pc"],
@@ -28,8 +29,8 @@ export const TagV1SampleInsert: TagV1InsertType = {
 };
 
 export const TagV1SampleSelect: TagV1SelectType = {
-  id: "123",
-  zeroId: "456",
+  id: crypto.randomUUID(),
+  zeroId: generateZeroId(),
   name: "laptop",
   tagSuggestions: ["pc"],
   keywords: ["laptops", "computer", "computers", "pc"],
