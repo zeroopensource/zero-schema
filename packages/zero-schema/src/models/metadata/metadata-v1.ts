@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const MetadataV1Schema = z.strictObject({
+export const MetadataV1Select = z.strictObject({
   createdAt: z.date(),
   updatedAt: z.date(),
 });

@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { MetadataV1Schema } from "../metadata/metadata-v1";
+import { MetadataV1Select } from "../metadata/metadata-v1";
 
 export const BlogPostV1Select = z.strictObject({
-  ...MetadataV1Schema.shape,
+  ...MetadataV1Select.shape,
   id: z.string(),
   zeroId: z.string().optional(),
   name: z.string(),

@@ -1,0 +1,39 @@
+import { z } from "zod";
+import { MetadataV1Select } from "../metadata/metadata-v1";
+
+export const TagV1Select = z.strictObject({
+  ...MetadataV1Select.shape,
+  id: z.string(),
+  zeroId: z.string().optional(),
+  name: z.string(),
+  suggestedTags: z.array(z.string()),
+  aliasedTags: z.array(z.string()),
+  description: z.string(),
+});
+export type TagV1SelectType = z.infer<typeof TagV1Select>;
+
+export const TagV1Insert = TagV1Select.omit({
+  createdAt: true,
+  updatedAt: true,
+});
+export type TagV1InsertType = z.infer<typeof TagV1Insert>;
+
+export const TagV1SampleInsert: TagV1InsertType = {
+  id: "123",
+  zeroId: "456",
+  name: "My Tag",
+  suggestedTags: ["technology", "programming"],
+  aliasedTags: [],
+  description: "This is a sample tag.",
+};
+
+export const TagV1SampleSelect: TagV1SelectType = {
+  id: "123",
+  zeroId: "456",
+  name: "My Tag",
+  suggestedTags: ["technology", "programming"],
+  aliasedTags: [],
+  description: "This is a sample tag.",
+  updatedAt: new Date(),
+  createdAt: new Date(),
+};
