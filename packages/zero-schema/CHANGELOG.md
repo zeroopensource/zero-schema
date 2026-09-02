@@ -1,5 +1,11 @@
 # @zeroopensource/zero-schema
 
+## 0.0.6
+
+### Patch Changes
+
+- [#27](https://github.com/zeroopensource/zero-schema/pull/27) [`5a28cc8`](https://github.com/zeroopensource/zero-schema/commit/5a28cc85529800957c1e4ad36d040e06a2f2eb73) Thanks [@jigz](https://github.com/jigz)! - Add Schemas
+
 ## 0.0.5
 
 ### Patch Changes
