@@ -16,6 +16,9 @@ const fontMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "zero-schema-web",
   description: "zero-schema-web",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
