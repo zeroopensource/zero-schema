@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "cn";
-import Header from "@/components/header";
 import Providers from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -39,7 +38,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="grid h-svh grid-rows-[auto_1fr]">
-            <Header />
+            {/* <Header /> */}
             {children}
           </div>
         </Providers>
