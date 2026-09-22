@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && pnpm fix:next-out",
     "start": "next start",
     "check-types": "next typegen && tsc --noEmit",
     "serve": "pnpm build && serve out",
     "shadcn": "shadcn",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "fix:next-out": "tsx scripts/fix-next-out.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -56,6 +57,7 @@
     "tailwindcss": "^4",
     "@types/mdx": "^2.0.14",
     "postcss": "^8.5.28",
-    "@biomejs/biome": "^2.5.14"
+    "@biomejs/biome": "^2.5.14",
+    "tsx": "^4.23.15"
   }
 }
