@@ -6,8 +6,8 @@ const withMDX = createMDX();
 const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
-  typedRoutes: true,
-  reactCompiler: true,
+  // typedRoutes: true,
+  // reactCompiler: true,
 };
 
 export default withMDX(nextConfig);
