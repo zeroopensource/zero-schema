@@ -2,6 +2,7 @@
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "./theme-provider";
+import SearchDialog from "@/components/search";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         disableTransitionOnChange
         enableSystem
       >
-        <RootProvider>{children}</RootProvider>
+        <RootProvider search={{ SearchDialog }}>{children}</RootProvider>
       </ThemeProvider>
     </TooltipProvider>
   );
