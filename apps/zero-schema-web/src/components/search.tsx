@@ -25,7 +25,7 @@ export default function DefaultSearchDialog(props: SharedProps) {
   ];
   const defaultTagValue = tags[0].value;
   const [tag, setTag] = useState<string | undefined>(defaultTagValue);
-  const { locale } = useI18n(); // (optional) for i18n
+  const { locale } = useI18n();
   const { search, setSearch, query } = useDocsSearch({
     client: staticClient({
       locale,
