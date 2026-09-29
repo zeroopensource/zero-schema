@@ -35,13 +35,8 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body>
-        <Providers>
-          <div className="grid h-svh grid-rows-[auto_1fr]">
-            {/* <Header /> */}
-            {children}
-          </div>
-        </Providers>
+      <body className="flex min-h-screen flex-col">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
