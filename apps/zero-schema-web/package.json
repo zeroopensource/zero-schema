@@ -56,6 +56,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/mdx": "^2.0.14",
     "@types/node": "^20",

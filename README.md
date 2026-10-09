@@ -1,8 +1,3 @@
----
-title: Hello World2
-description: Your first document2
----
-
 # zero-schema
 
 **Reusable generalized schemas for modern TypeScript applications.**  
