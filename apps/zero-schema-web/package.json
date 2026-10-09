@@ -13,7 +13,7 @@
     "shadcn:zero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
     "lint": "biome check",
     "format": "biome format --write",
-    "fix:next-out": "tsx scripts/fix-next-out.ts"
+    "fix:next-out": "tsx src/lib/fix-next-out.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -54,7 +54,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
     "@tailwindcss/postcss": "^4",
     "@types/mdx": "^2.0.14",
     "@types/node": "^20",

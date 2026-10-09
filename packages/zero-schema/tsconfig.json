@@ -9,8 +9,7 @@
       "@/*": ["./src/*"],
       "@/root/*": ["./*"],
       "@/src/*": ["./src/*"],
-      "@/shadcn/*": ["./src/shadcn/*"],
-      "fumadocs-mdx:collections/*": ["./.source/*"]
+      "@/shadcn/*": ["./src/shadcn/*"]
     },
     "resolveJsonModule": true,
     "types": ["node"],
@@ -23,5 +22,6 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
