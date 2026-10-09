@@ -1,8 +1,13 @@
+import { createMDX } from "fumadocs-mdx/next";
 import type { NextConfig } from "next";
 
+const withMDX = createMDX();
+
 const nextConfig: NextConfig = {
-  typedRoutes: true,
-  reactCompiler: true,
+  output: "export",
+  reactStrictMode: true,
+  // typedRoutes: true,
+  // reactCompiler: true,
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);
