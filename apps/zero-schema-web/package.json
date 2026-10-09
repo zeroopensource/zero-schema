@@ -4,8 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && pnpm fix:next-out",
+    "dev": "pnpm build && pnpm dev:next",
+    "dev:next": "dotenv -e .env -- next dev",
+    "build": "pnpm copy-readme && next build && pnpm fix:next-out",
     "start": "next start",
     "check-types": "next typegen && tsc --noEmit",
     "serve": "pnpm build && serve out",
@@ -13,7 +14,8 @@
     "shadcn:zero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
     "lint": "biome check",
     "format": "biome format --write",
-    "fix:next-out": "tsx src/lib/fix-next-out.ts"
+    "fix:next-out": "tsx src/lib/fix-next-out.ts",
+    "copy-readme": "tsx src/lib/copy-readme.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
