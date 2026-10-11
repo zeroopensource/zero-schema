@@ -1,0 +1,17 @@
+{
+  "$schemaDocs": "https://www.fumadocs.dev/docs/page-conventions#meta",
+  "title": "zero-schema",
+  "description": "The zero-schema docs",
+  "icon": "Building",
+  "root": true,
+  "pages": [
+    "---General---",
+    "[Zero Open Source™](https://zeroopensource.org/)",
+    "index",
+    "---Schemas---",
+    "lib",
+    "patches",
+    "file",
+    "zero"
+  ]
+}
