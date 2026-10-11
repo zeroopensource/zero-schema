@@ -2,7 +2,7 @@
   "$schemaDocs": "https://www.fumadocs.dev/docs/page-conventions#meta",
   "title": "zero-schema",
   "description": "The zero-schema docs",
-  "icon": "Building",
+  "icon": "Circle",
   "root": true,
   "pages": [
     "---General---",
