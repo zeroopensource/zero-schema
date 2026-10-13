@@ -402,6 +402,9 @@ importers:
       ts-node:
         specifier: ^10.9.1
         version: 10.9.2(@types/node@25.5.2)(typescript@6.0.2)
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
 
 packages:
 

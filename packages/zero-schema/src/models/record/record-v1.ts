@@ -5,17 +5,17 @@ import { MetadataV1 } from "../metadata/metadata-v1";
 export const RecordV1 = z.strictObject({
   ...MetadataV1.shape,
   id: z.string(),
-  zeroId: z.string().optional(),
   name: z.string(),
   tags: z.array(z.string()),
+  zeroId: z.string().optional(),
 });
 export type RecordV1Type = z.infer<typeof RecordV1>;
 
 export const RecordV1Sample: RecordV1Type = {
+  createdAt: new Date(),
   id: crypto.randomUUID(),
-  zeroId: generateZeroId(),
   name: "Zero",
   tags: [],
   updatedAt: new Date(),
-  createdAt: new Date(),
+  zeroId: generateZeroId(),
 };
