@@ -20,6 +20,6 @@ export const TagV1Sample: TagV1Type = {
   tagSuggestions: ["pc"],
   keywords: ["laptops", "computer", "computers", "pc"],
   description: "This is a sample tag.",
-  updatedAt: new Date(),
-  createdAt: new Date(),
+  updatedAt: new Date().toISOString(),
+  createdAt: new Date().toISOString(),
 };

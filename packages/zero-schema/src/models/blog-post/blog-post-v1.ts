@@ -14,10 +14,10 @@ export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
 
 export const BlogPostV1Sample: BlogPostV1Type = {
   body: "This is the content of my blog post.",
-  createdAt: new Date(),
+  createdAt: new Date().toISOString(),
   id: crypto.randomUUID(),
   name: "My Blog Post",
   tags: ["technology", "programming"],
-  updatedAt: new Date(),
+  updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
 };

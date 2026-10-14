@@ -14,10 +14,10 @@ export type IndexV1Type = z.infer<typeof IndexV1>;
 
 export const IndexV1Sample: IndexV1Type = {
   body: "This is the content of my blog post.",
-  createdAt: new Date(),
+  createdAt: new Date().toISOString(),
   id: crypto.randomUUID(),
   name: "My Blog Post",
   tags: ["technology", "programming"],
-  updatedAt: new Date(),
+  updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
 };

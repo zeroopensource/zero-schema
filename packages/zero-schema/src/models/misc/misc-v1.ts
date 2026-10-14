@@ -14,10 +14,10 @@ export type MiscV1Type = z.infer<typeof MiscV1>;
 
 export const MiscV1Sample: MiscV1Type = {
   body: "This is the content of my misc item.",
-  createdAt: new Date(),
+  createdAt: new Date().toISOString(),
   id: crypto.randomUUID(),
   name: "My Misc Item",
   tags: ["technology", "programming"],
-  updatedAt: new Date(),
+  updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
 };

@@ -12,10 +12,10 @@ export const RecordV1 = z.strictObject({
 export type RecordV1Type = z.infer<typeof RecordV1>;
 
 export const RecordV1Sample: RecordV1Type = {
-  createdAt: new Date(),
+  createdAt: new Date().toISOString(),
   id: crypto.randomUUID(),
   name: "Zero",
   tags: [],
-  updatedAt: new Date(),
+  updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
 };
