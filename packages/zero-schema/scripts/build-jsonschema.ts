@@ -1,14 +1,9 @@
 import path from "node:path";
 import fs from "fs-extra";
 import { z } from "zod";
+import { schemas } from "./../src/index";
 
-const schema = z.object({
-  name: z.string(),
-  tags: z.array(z.string()),
-  zeroId: z.string(),
-});
-
-const outputSchema = async () => {
+const buildJsonSchema = async (schema: z.ZodObject) => {
   const jsonSchema = z.toJSONSchema(schema);
   const outputPath = path.join(
     process.cwd(),
@@ -20,4 +15,10 @@ const outputSchema = async () => {
   });
   console.log(`Generated ${outputPath}`);
 };
-outputSchema();
+
+const buildJsonSchemas = () => {
+  for (const schema of schemas) {
+    buildJsonSchema(schema);
+  }
+};
+buildJsonSchemas();
