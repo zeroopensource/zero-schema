@@ -10,7 +10,7 @@ const buildJsonSchema = async (name: string, schema: z.ZodObject) => {
   const jsonSchema = z.toJSONSchema(schema);
   const outputPath = path.join(
     process.cwd(),
-    `public/zero-index/${toKebabCase(name)}-schema.json`
+    `dist/public/zero-schema/${toKebabCase(name)}-schema.json`
   );
   await fs.remove(outputPath);
   await fs.outputJson(outputPath, jsonSchema, {
