@@ -8,6 +8,7 @@
     "check-types": "next typegen && tsc --noEmit",
     "copy-readme": "tsx src/lib/copy-readme.ts",
     "copy-jsonschema": "tsx src/scripts/copy-jsonschema.ts",
+    "generate-docs": "tsx src/scripts/generate-docs.ts",
     "dev": "pnpm build && pnpm dev:next",
     "dev:next": "dotenv -e .env -- next dev",
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
