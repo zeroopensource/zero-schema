@@ -200,8 +200,8 @@ importers:
         specifier: 6.0.2
         version: 6.0.2
       ultracite:
-        specifier: 7.12.4
-        version: 7.12.4(@biomejs/biome@2.5.15)(prettier@3.9.6)
+        specifier: 8.0.1
+        version: 8.0.1(@biomejs/biome@2.5.15)(prettier@3.9.6)
       vitest:
         specifier: ^4.1.2
         version: 4.1.11(@types/node@25.5.2)(msw@2.15.0(@types/node@25.5.2)(typescript@6.0.2))(vite@8.2.2(@types/node@25.5.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.0))
@@ -7623,15 +7623,16 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  ultracite@7.12.4:
-    resolution: {integrity: sha512-6jVEwaZBaytFm6XRoI3WGS2ZydrkrNvHTD0qTf7983ti2FlEWL1YcxnPaMaYuS6PkXqMhIK2XGr0cbsL4x5pQA==}
+  ultracite@8.0.1:
+    resolution: {integrity: sha512-4XtB3My7o/O8uveSBPjMO6aPwkO7LEGDf2RCuR4jMVSJ4JByLNIb8+xpCR5M+HssgPrl0aSTQ/40od80ItmiqQ==}
+    engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
       '@biomejs/biome': ^2.5.0
       eslint: ^10.9.0
-      oxfmt: '>=0.59.0'
+      oxfmt: '>=0.71.0 <1'
       oxlint: ^1.86.0
-      prettier: ^3.0.0
+      prettier: ^3.5.3
       stylelint: ^17.0.0
     peerDependenciesMeta:
       '@biomejs/biome':
@@ -15629,7 +15630,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  ultracite@7.12.4(@biomejs/biome@2.5.15)(prettier@3.9.6):
+  ultracite@8.0.1(@biomejs/biome@2.5.15)(prettier@3.9.6):
     dependencies:
       '@clack/prompts': 1.8.1
       cli-truncate: 6.1.1
