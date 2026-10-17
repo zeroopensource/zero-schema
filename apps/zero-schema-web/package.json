@@ -6,13 +6,13 @@
   "scripts": {
     "build": "pnpm copy-readme && pnpm copy-jsonschema && next build && pnpm fix:next-out",
     "check-types": "next typegen && tsc --noEmit",
-    "copy-readme": "tsx src/lib/copy-readme.ts",
     "copy-jsonschema": "tsx src/scripts/copy-jsonschema.ts",
-    "generate-docs": "tsx src/scripts/generate-docs.ts",
+    "copy-readme": "tsx src/lib/copy-readme.ts",
     "dev": "pnpm build && pnpm dev:next",
     "dev:next": "dotenv -e .env -- next dev",
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
     "format": "biome format --write",
+    "generate-docs": "tsx src/scripts/generate-docs.ts",
     "lint": "biome check",
     "serve": "pnpm build && serve out",
     "shadcn": "shadcn",
@@ -58,6 +58,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@adobe/jsonschema2md": "^8.0.11",
     "@tailwindcss/postcss": "^4",
     "@types/fs-extra": "^11.0.1",
     "@types/mdx": "^2.0.14",
@@ -67,12 +68,12 @@
     "dotenv-cli": "11.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "fs-extra": "^11.1.1",
     "postcss": "^8.5.28",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "shadcn": "^4.21.0",
     "tailwindcss": "^4",
-    "tsx": "^4.23.15",
-    "fs-extra": "^11.1.1"
+    "tsx": "^4.23.15"
   }
 }

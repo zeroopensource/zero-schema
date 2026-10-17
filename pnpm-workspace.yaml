@@ -9,8 +9,3 @@ allowBuilds:
   prisma: true
   unrs-resolver: true
 
-permissions:
-  dotenv:
-    skills: true
-  ultracite:
-    skills: true
