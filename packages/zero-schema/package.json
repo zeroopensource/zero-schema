@@ -24,7 +24,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.cts",
   "scripts": {
-    "build": "tsdown",
+    "build": "tsdown && pnpm build:jsonschema",
     "build:jsonschema": "tsx scripts/build-jsonschema.ts",
     "lint": "cross-env TIMING=1 eslint \"**/*.ts*\"",
     "migrate:postgresql": "dotenv -e .env.postgresql.local.dev -- prisma db push --schema dist/postgresql.prisma",
