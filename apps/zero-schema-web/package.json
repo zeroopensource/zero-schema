@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm copy-readme && next build && pnpm fix:next-out",
+    "build": "pnpm copy-readme && pnpm copy-jsonschema && next build && pnpm fix:next-out",
     "check-types": "next typegen && tsc --noEmit",
     "copy-readme": "tsx src/lib/copy-readme.ts",
     "copy-jsonschema": "tsx src/scripts/copy-jsonschema.ts",
