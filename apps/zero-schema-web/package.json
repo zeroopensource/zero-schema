@@ -12,7 +12,7 @@
     "dev:next": "dotenv -e .env -- next dev",
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
     "format": "biome format --write",
-    "generate-docs": "jsonschema2md -d public/zero-schema -o content/docs",
+    "generate-docs": "jsonschema2md -d public/zero-schema -o content/docs/zero-schema",
     "lint": "biome check",
     "serve": "pnpm build && serve out",
     "shadcn": "shadcn",
