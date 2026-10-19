@@ -12,7 +12,7 @@
     "dev:next": "dotenv -e .env -- next dev",
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
     "format": "biome format --write",
-    "generate-docs": "rm -rf content/docs/zero-schema && jsonschema2md -d public/zero-schema -o content/docs/zero-schema",
+    "generate-docs": "rimraf ./content/docs/zero-schema && jsonschema2md -d public/zero-schema -o content/docs/zero-schema && pnpm patch-docs",
     "lint": "biome check",
     "patch-docs": "tsx src/scripts/patch-docs.ts",
     "serve": "pnpm build && serve out",
@@ -73,6 +73,7 @@
     "postcss": "^8.5.28",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "rimraf": "^6.1.3",
     "shadcn": "^4.21.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.15"
