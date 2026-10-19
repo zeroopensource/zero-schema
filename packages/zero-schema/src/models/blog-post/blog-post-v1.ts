@@ -13,9 +13,9 @@ export const BlogPostV1 = z
   })
   .meta({
     description: "Blog Post Schema",
+    title: "BlogPostV1",
     // examples: "",
     // id: "BlogPostV1",
-    title: "BlogPostV1",
   });
 export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
 

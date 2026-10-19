@@ -46,6 +46,24 @@ const findMarkdownFiles = async (directory: string): Promise<string[]> => {
   return nestedFiles.flat();
 };
 
+const deleteUnwantedDocs = async (directory: string): Promise<void> => {
+  const entries = await fs.readdir(directory, { withFileTypes: true });
+
+  await Promise.all(
+    entries.map(async (entry) => {
+      const entryPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await deleteUnwantedDocs(entryPath);
+      } else if (
+        entry.isFile() &&
+        (entry.name.toLowerCase() === "readme.md" || /properties/i.test(entry.name))
+      ) {
+        await fs.remove(entryPath);
+      }
+    }),
+  );
+};
+
 const addFrontmatter = (content: string) => {
   // Strip frontmatter previously added by this script so repeated runs stay clean.
   const body = content.replace(/^---\r?\n[\s\S]*?\r?\n---\s*\r?\n?/, "");
@@ -69,6 +87,7 @@ const patchDocs = async () => {
     throw new Error(`Source not found: ${sourcePath}`);
   }
 
+  await deleteUnwantedDocs(sourcePath);
   const markdownFiles = await findMarkdownFiles(sourcePath);
 
   for (const filePath of markdownFiles) {
