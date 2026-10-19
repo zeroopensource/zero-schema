@@ -5,7 +5,10 @@ const sourcePath = path.resolve("content/docs/zero-schema");
 
 const getFirstHeader = (content: string) => {
   const match = content.match(/^#{1,6}\s+(.+?)\s*#*\s*$/m);
-  return match?.[1]?.trim().replace(/\*\*(.*?)\*\*/g, "$1");
+  return match?.[1]
+    ?.trim()
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\s+Schema\s*$/i, "");
 };
 
 const getDescription = (content: string) => {
