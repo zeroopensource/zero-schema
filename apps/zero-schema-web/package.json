@@ -13,6 +13,7 @@
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
     "format": "biome format --write",
     "generate-docs": "jsonschema2md -d public/zero-schema -o content/docs/zero-schema",
+    "patch-docs": "tsx src/scripts/patch-docs.ts",
     "lint": "biome check",
     "serve": "pnpm build && serve out",
     "shadcn": "shadcn",
