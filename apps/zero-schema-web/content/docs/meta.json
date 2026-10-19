@@ -9,11 +9,11 @@
     "[Zero Open Source™](https://zeroopensource.org/)",
     "index",
     "[Zero Index](https://zero-index.zeroopensource.org/)",
-    "Index-Schemas",
-    "!index-schema",
-    "!record-schema",
-    "---Schemas---",
     "...",
+    "---Index Schemas---",
+    "zero-schema/index-v1-schema",
+    "zero-schema/record-v1-schema",
+    "---Schemas---",
     "...zero-schema"
   ]
 }
