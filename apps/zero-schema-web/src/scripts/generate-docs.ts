@@ -2,14 +2,14 @@ import path from "node:path";
 import { jsonschema2md } from "@adobe/jsonschema2md";
 import fs from "fs-extra";
 
+const sourceSchemaPath = path.resolve(
+  "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
+);
 const publicSchemaPath = path.resolve("./public/zero-schema");
 
 const copyJsonSchema = async () => {
-  const sourcePath = path.resolve(
-    "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
-  );
   try {
-    await fs.copy(sourcePath, publicSchemaPath);
+    await fs.copy(sourceSchemaPath, publicSchemaPath);
   } catch (err) {
     console.error("Error copying JsonSchema:", err);
   }
@@ -24,11 +24,11 @@ const generateDocs = async () => {
       includeReadme: true,
       outDir: destinationPath,
       schemaOut: publicSchemaPath,
-      schemaPath: publicSchemaPath,
+      schemaPath: sourceSchemaPath,
     });
 
     console.log(
-      `Generated JSON Schema docs from ${publicSchemaPath} to ${destinationPath}`
+      `Generated JSON Schema docs from ${sourceSchemaPath} to ${destinationPath}`
     );
   } catch (err) {
     console.error("Error copying JsonSchema:", err);
