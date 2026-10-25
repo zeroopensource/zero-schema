@@ -85,7 +85,7 @@ const addFrontmatter = (content: string) => {
   return `${frontmatter}${body.replace(/^\s+/, "")}`;
 };
 
-const patchDocs = async () => {
+export const patchDocs = async () => {
   if (!(await fs.pathExists(sourcePath))) {
     throw new Error(`Source not found: ${sourcePath}`);
   }
@@ -102,7 +102,4 @@ const patchDocs = async () => {
   console.log(`Patched ${markdownFiles.length} JSON Schema docs in ${sourcePath}`);
 };
 
-patchDocs().catch((error: unknown) => {
-  console.error("Failed to patch docs:", error);
-  process.exitCode = 1;
-});
+
