@@ -1,21 +1,29 @@
 import path from "node:path";
 import fs from "fs-extra";
 
-const sourcePath = path.resolve("public/zero-schema");
-const destinationPath = path.resolve("content/docs");
+const publicSchemaPath = path.resolve("./public/zero-schema");
 
-const generateDocs = async () => {
-	if (!(await fs.pathExists(sourcePath))) {
-		throw new Error(`Source json schema not found: ${sourcePath}`);
-	}
-
-	// await fs.ensureDir(destinationPath);
-	// await fs.copy(sourcePath, destinationPath, { overwrite: true });
-
-	console.log(`Generated JSON Schema docs from ${sourcePath} to ${destinationPath}`);
+const copyJsonSchema = async () => {
+  const sourcePath = path.resolve(
+    "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
+  );
+  try {
+    await fs.copy(sourcePath, publicSchemaPath);
+  } catch (err) {
+    console.error("Error copying JsonSchema:", err);
+  }
 };
 
-generateDocs().catch((error: unknown) => {
-	console.error("Failed to generate docs:", error);
-	process.exitCode = 1;
-});
+const generateDocs = async () => {
+  const destinationPath = path.resolve("./content/docs");
+  try {
+    await copyJsonSchema();
+
+    console.log(
+      `Generated JSON Schema docs from ${publicSchemaPath} to ${destinationPath}`
+    );
+  } catch (err) {
+    console.error("Error copying JsonSchema:", err);
+  }
+};
+generateDocs();

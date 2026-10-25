@@ -7,8 +7,8 @@
   "pages": [
     "---General---",
     "[Zero Open Source™](https://zeroopensource.org/)",
-    "index",
     "[Zero Index](https://zero-index.zeroopensource.org/)",
+    "index",
     "...",
     "---Index Schemas---",
     "zero-schema/index-v1-schema",
