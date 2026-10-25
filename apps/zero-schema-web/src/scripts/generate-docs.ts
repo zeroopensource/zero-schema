@@ -6,16 +6,14 @@ const sourceSchemaPath = path.resolve(
   "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
 );
 const publicSchemaPath = path.resolve("./public/zero-schema");
+const docsPath = path.resolve("./content/docs/zero-schema");
 const runJsonschema2md = jsonschema2md as unknown as (
   args: string[]
 ) => Promise<number>;
 
 const generateDocs = async () => {
-  const docsPath = path.resolve("./content/docs/zero-schema");
   try {
-    await fs.ensureDir(docsPath);
     await fs.emptyDir(docsPath);
-    await fs.ensureDir(publicSchemaPath);
     await fs.emptyDir(publicSchemaPath);
 
     await runJsonschema2md([
@@ -27,6 +25,8 @@ const generateDocs = async () => {
       docsPath,
       "--schema-out",
       publicSchemaPath,
+      "--meta",
+      `title=Test`,
     ]);
     // await patchDocs();
 
