@@ -5,10 +5,15 @@ import klaw from "klaw";
 
 const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
   const files: string[] = [];
-  await klaw(docsPath).on("data", (item) => {
-    if (!item.stats.isDirectory() && path.extname(item.path) === ".md") {
-      files.push(item.path);
-    }
+  await new Promise<void>((resolve, reject) => {
+    klaw(docsPath)
+      .on("data", (item) => {
+        if (!item.stats.isDirectory() && path.extname(item.path) === ".md") {
+          files.push(item.path);
+        }
+      })
+      .on("end", resolve)
+      .on("error", reject);
   });
   return files;
 };
@@ -24,7 +29,7 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
         ?.trim()
         .replace(/\*\*(.*?)\*\*/g, "$1")
         .replace(/\s+Schema\s*$/i, "");
-      const frontmatter = ["---", `title: ${title}`, "---"].join("\n");
+      const frontmatter = ["---", `title: ${title}`, "---", ""].join("\n");
       const patchedContent = `${frontmatter}${content.replace(/^\s+/, "")}`;
       await fs.writeFile(markdownFile, patchedContent, "utf8");
     })
