@@ -19,7 +19,6 @@ const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
 };
 
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
-  //   await deleteUnwantedDocs(sourcePath);
   const markdownFiles = await findMarkdownFiles(docsPath);
   await Promise.all(
     markdownFiles.map(async (markdownFile) => {
@@ -31,7 +30,14 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
         .replace(/\s+Schema\s*$/i, "");
       const frontmatter = ["---", `title: ${title}`, "---", ""].join("\n");
       const patchedContent = `${frontmatter}${content.replace(/^\s+/, "")}`;
-      await fs.writeFile(markdownFile, patchedContent, "utf8");
+      const shouldRemove = ["Untitled", "README"].some((keyword) =>
+        title?.includes(keyword)
+      );
+      if (shouldRemove) {
+        await fs.remove(markdownFile);
+      } else {
+        await fs.writeFile(markdownFile, patchedContent, "utf8");
+      }
     })
   );
   console.log(
@@ -39,18 +45,9 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
   );
 };
 
-// const getFirstHeader = (content: string) => {
-//   const match = content.match(/^#{1,6}\s+(.+?)\s*#*\s*$/m);
-//   return match?.[1]
-//     ?.trim()
-//     .replace(/\*\*(.*?)\*\*/g, "$1")
-//     .replace(/\s+Schema\s*$/i, "");
-// };
-
 // const getDescription = (content: string) => {
 //   const codeBlock = content.match(/^```[^\n]*\n[\s\S]*?^```\s*$/m);
 //   if (!codeBlock || codeBlock.index === undefined) return undefined;
-
 //   const afterCodeBlock = content.slice(codeBlock.index + codeBlock[0].length);
 //   const tableStart = afterCodeBlock.search(/^\s*\|/m);
 //   const beforeTable = tableStart < 0 ? afterCodeBlock : afterCodeBlock.slice(0, tableStart);
@@ -58,7 +55,6 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
 //     .split(/\n\s*\n/)
 //     .map((paragraph) => paragraph.trim())
 //     .filter(Boolean);
-
 //   const description = paragraphs[0]
 //     ?.replace(/^#+\s*/, "")
 //     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
@@ -66,15 +62,11 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
 //     .replace(/\*(.*?)\*|_(.*?)_/g, "$1$2")
 //     .replace(/\s+/g, " ")
 //     .trim();
-
 //   return description || undefined;
 // };
 
-// const yamlString = (value: string) => JSON.stringify(value);
-
 // const deleteUnwantedDocs = async (directory: string): Promise<void> => {
 //   const entries = await fs.readdir(directory, { withFileTypes: true });
-
 //   await Promise.all(
 //     entries.map(async (entry) => {
 //       const entryPath = path.join(directory, entry.name);
@@ -88,22 +80,4 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
 //       }
 //     }),
 //   );
-// };
-
-// const addFrontmatter = (content: string) => {
-//   // Strip frontmatter previously added by this script so repeated runs stay clean.
-//   const body = content.replace(/^---\r?\n[\s\S]*?\r?\n---\s*\r?\n?/, "");
-//   const title = getFirstHeader(body);
-//   if (!title) return content;
-
-//   const description = getDescription(body);
-//   const frontmatter = [
-//     "---",
-//     `title: ${yamlString(title)}`,
-//     ...(description ? [`description: ${yamlString(description)}`] : []),
-//     "---",
-//     "",
-//   ].join("\n");
-
-//   return `${frontmatter}${body.replace(/^\s+/, "")}`;
 // };

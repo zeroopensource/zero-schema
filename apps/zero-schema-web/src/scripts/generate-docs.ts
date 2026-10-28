@@ -1,7 +1,7 @@
 import path from "node:path";
 import { main as jsonschema2md } from "@adobe/jsonschema2md";
 import fs from "fs-extra";
-import {patchDocs} from "./patch-docs";
+import { patchDocs } from "./patch-docs";
 
 const sourceSchemaPath = path.resolve(
   "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
@@ -26,10 +26,8 @@ const generateDocs = async () => {
       docsPath,
       "--schema-out",
       publicSchemaPath,
-      // "--meta",
-      // `title=Test`,
     ]);
-    await patchDocs({docsPath});
+    await patchDocs({ docsPath });
 
     console.log(`Generated docs from ${sourceSchemaPath} to ${docsPath}`);
   } catch (err) {
