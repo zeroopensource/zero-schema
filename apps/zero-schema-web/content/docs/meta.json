@@ -1,0 +1,19 @@
+{
+  "$schemaDocs": "https://www.fumadocs.dev/docs/page-conventions#meta",
+  "title": "zero-schema",
+  "description": "The zero-schema docs",
+  "icon": "Circle",
+  "root": true,
+  "pages": [
+    "---General---",
+    "[Zero Open Source™](https://zeroopensource.org/)",
+    "[Zero Index](https://zero-index.zeroopensource.org/)",
+    "index",
+    "...",
+    "---Index Schemas---",
+    "zero-schema/index-v1-schema",
+    "zero-schema/record-v1-schema",
+    "---Schemas---",
+    "...zero-schema"
+  ]
+}
