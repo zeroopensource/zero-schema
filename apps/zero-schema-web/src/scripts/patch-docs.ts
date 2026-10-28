@@ -19,7 +19,9 @@ const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
 };
 
 const patchLinks = async (content: string): Promise<string> => {
-  
+  const patch1 = content.replace("public/", "")
+  const patch2 = patch1
+  return patch2
 }
 
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
@@ -33,7 +35,7 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
         .replace(/\*\*(.*?)\*\*/g, "$1")
         .replace(/\s+Schema\s*$/i, "");
       const frontmatter = ["---", `title: ${title}`, "---", ""].join("\n");
-      const patchedContent = `${frontmatter}${content.replace("public/", "")}`;
+      const patchedContent = `${frontmatter}${await patchLinks(content)}`;
       const shouldRemove = ["Untitled", "README"].some((keyword) =>
         title?.includes(keyword)
       );
