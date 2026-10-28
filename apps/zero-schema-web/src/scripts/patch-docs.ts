@@ -29,7 +29,7 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
         .replace(/\*\*(.*?)\*\*/g, "$1")
         .replace(/\s+Schema\s*$/i, "");
       const frontmatter = ["---", `title: ${title}`, "---", ""].join("\n");
-      const patchedContent = `${frontmatter}${content.replace(/^\s+/, "")}`;
+      const patchedContent = `${frontmatter}${content.replace("public/", "")}`;
       const shouldRemove = ["Untitled", "README"].some((keyword) =>
         title?.includes(keyword)
       );
