@@ -18,6 +18,10 @@ const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
   return files;
 };
 
+const patchLinks = async (content: string): Promise<string> => {
+  
+}
+
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
   const markdownFiles = await findMarkdownFiles(docsPath);
   await Promise.all(
@@ -45,39 +49,4 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
   );
 };
 
-// const getDescription = (content: string) => {
-//   const codeBlock = content.match(/^```[^\n]*\n[\s\S]*?^```\s*$/m);
-//   if (!codeBlock || codeBlock.index === undefined) return undefined;
-//   const afterCodeBlock = content.slice(codeBlock.index + codeBlock[0].length);
-//   const tableStart = afterCodeBlock.search(/^\s*\|/m);
-//   const beforeTable = tableStart < 0 ? afterCodeBlock : afterCodeBlock.slice(0, tableStart);
-//   const paragraphs = beforeTable
-//     .split(/\n\s*\n/)
-//     .map((paragraph) => paragraph.trim())
-//     .filter(Boolean);
-//   const description = paragraphs[0]
-//     ?.replace(/^#+\s*/, "")
-//     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-//     .replace(/\*\*(.*?)\*\*|__(.*?)__/g, "$1$2")
-//     .replace(/\*(.*?)\*|_(.*?)_/g, "$1$2")
-//     .replace(/\s+/g, " ")
-//     .trim();
-//   return description || undefined;
-// };
 
-// const deleteUnwantedDocs = async (directory: string): Promise<void> => {
-//   const entries = await fs.readdir(directory, { withFileTypes: true });
-//   await Promise.all(
-//     entries.map(async (entry) => {
-//       const entryPath = path.join(directory, entry.name);
-//       if (entry.isDirectory()) {
-//         await deleteUnwantedDocs(entryPath);
-//       } else if (
-//         entry.isFile() &&
-//         (entry.name.toLowerCase() === "readme.md" || /properties/i.test(entry.name))
-//       ) {
-//         await fs.remove(entryPath);
-//       }
-//     }),
-//   );
-// };
