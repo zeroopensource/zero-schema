@@ -4,8 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "_generate-docs": "rimraf ./content/docs/zero-schema && pnpm generate-jsonschema && pnpm patch-docs",
-    "_generate-jsonschema2": "jsonschema2md -d public/zero-schema -o content/docs/zero-schema -x public/zero-schema",
     "build": "pnpm generate-docs && pnpm copy-readme && next build && pnpm fix:next-out",
     "check-types": "next typegen && tsc --noEmit",
     "copy-jsonschema": "tsx src/scripts/copy-jsonschema.ts",
