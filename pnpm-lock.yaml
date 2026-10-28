@@ -268,6 +268,9 @@ importers:
       input-otp:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      klaw:
+        specifier: ^4.1.0
+        version: 4.1.0
       lucide-react:
         specifier: ^1.47.0
         version: 1.47.0(react@19.3.0)
@@ -326,6 +329,9 @@ importers:
       '@types/fs-extra':
         specifier: ^11.0.1
         version: 11.0.4
+      '@types/klaw':
+        specifier: ^3.0.8
+        version: 3.0.8
       '@types/mdx':
         specifier: ^2.0.14
         version: 2.0.14
@@ -3317,6 +3323,9 @@ packages:
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
+  '@types/klaw@3.0.8':
+    resolution: {integrity: sha512-JNNpHCo5psAeI304Y18DFN3dRMl/Yo+r24dSGJJ73IHjjMQB2o7ztY+z+1F9hNTj3LIR0fa3Ute4cO0yUNhWGw==}
+
   '@types/lodash@4.17.25':
     resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
@@ -5812,6 +5821,10 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  klaw@4.1.0:
+    resolution: {integrity: sha512-1zGZ9MF9H22UnkpVeuaGKOjfA2t6WrfdrJmGjy16ykcjnKQDmHVX+KI477rpbGevz/5FD4MC3xf1oxylBgcaQw==}
+    engines: {node: '>=14.14.0'}
 
   kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
@@ -10876,6 +10889,10 @@ snapshots:
     dependencies:
       '@types/node': 25.5.2
 
+  '@types/klaw@3.0.8':
+    dependencies:
+      '@types/node': 20.19.43
+
   '@types/lodash@4.17.25': {}
 
   '@types/mdast@4.0.4':
@@ -13530,6 +13547,8 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  klaw@4.1.0: {}
 
   kleur@3.0.3: {}
 
