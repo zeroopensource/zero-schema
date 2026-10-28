@@ -19,8 +19,20 @@ const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
 };
 
 const patchLinks = async (content: string): Promise<string> => {
-  const patch1 = content.replace("public/", "")
-  const patch2 = patch1
+  const patch1 = content.replaceAll("public/", "");
+  const schemaUrl = patch1.match(/```txt\s*\r?\n(https?:\/\/[^\s`]+)\s*\r?\n```/)?.[1];
+  const patch2 = schemaUrl
+    ? patch1.replace(
+        /\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g,
+        (link, label: string, target: string, title?: string) => {
+          if (!/\.(?:md|json)(?:#.*)?$/i.test(target)) return link;
+          const fragment =
+            title?.match(/#\S+/)?.[0] ?? target.match(/#.*$/)?.[0] ?? "";
+          const titleAttribute = title ? ` "${title}"` : "";
+          return `[${label}](${schemaUrl}${fragment}${titleAttribute})`;
+        }
+      )
+    : patch1;
   return patch2
 }
 
