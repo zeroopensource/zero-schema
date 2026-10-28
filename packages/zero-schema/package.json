@@ -1,6 +1,6 @@
 {
   "name": "@zeroopensource/zero-schema",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Reusable generalized schemas for various databases and ORMs",
   "homepage": "https://github.com/zeroopensource/zero-schema",
   "bugs": {
