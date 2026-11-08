@@ -18,7 +18,10 @@ export const BlogPostV1Input = z
   });
 
 export const BlogPostV1 = RecordV1.extend({
-  metadata: z.strictObject({}),
+  metadata: z.strictObject({
+    isListed: z.boolean(),
+    isPublished: z.boolean(),
+  }),
 }).meta({
   description: "Blog Post Schema",
   title: "BlogPostV1",
@@ -33,7 +36,10 @@ export const BlogPostV1Sample: BlogPostV1Type = {
   createdAt: new Date().toISOString(),
   description: "This is the content of my blog post.",
   id: crypto.randomUUID(),
-  metadata: {},
+  metadata: {
+    isListed: true,
+    isPublished: true,
+  },
   name: "My Blog Post",
   tags: ["technology", "programming"],
   updatedAt: new Date().toISOString(),
