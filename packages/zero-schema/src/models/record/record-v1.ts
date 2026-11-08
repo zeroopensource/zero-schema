@@ -1,23 +1,30 @@
 import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 
-export const RecordV1 = z
+export const RecordV1Input = z
   .strictObject({
     $schema: z.string(),
-    createdAt: z.iso.datetime(),
     description: z.string().optional(),
-    id: z.string(),
     name: z.string(),
     tags: z.array(z.string()),
-    updatedAt: z.iso.datetime(),
     zeroId: z.string().optional(),
   })
   .meta({
     description: "Record Schema",
     title: "RecordV1",
-    // examples: "",
-    // id: "RecordV1",
   });
+
+export const RecordV1 = RecordV1Input.extend({
+  createdAt: z.iso.datetime(),
+  id: z.string(),
+  updatedAt: z.iso.datetime(),
+}).meta({
+  description: "Record Schema",
+  title: "RecordV1",
+  // examples: "",
+  // id: "RecordV1",
+});
+
 export type RecordV1Type = z.infer<typeof RecordV1>;
 
 export const RecordV1Sample: RecordV1Type = {
