@@ -15,6 +15,19 @@ export const BlogPostV1Input = RecordV1Input.extend({
   title: "BlogPostV1Input",
 });
 export type BlogPostV1InputType = z.infer<typeof BlogPostV1Input>;
+export const BlogPostV1InputSample: BlogPostV1InputType = {
+  $schema:
+    "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
+  description: "This is the content of my blog post.",
+  metadata: {
+    authors: [],
+    isListed: true,
+    isPublished: true,
+  },
+  name: "My Blog Post",
+  tags: ["technology", "programming"],
+  zeroId: generateZeroId(),
+};
 
 export const BlogPostV1 = RecordV1.extend({
   metadata: BlogPostV1Metadata,
@@ -23,11 +36,12 @@ export const BlogPostV1 = RecordV1.extend({
   title: "BlogPostV1",
 });
 export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
-
-export const BlogPostV1InputSample: BlogPostV1InputType = {
+export const BlogPostV1Sample: BlogPostV1Type = {
   $schema:
     "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
+  createdAt: new Date().toISOString(),
   description: "This is the content of my blog post.",
+  id: crypto.randomUUID(),
   metadata: {
     authors: [],
     isListed: true,
