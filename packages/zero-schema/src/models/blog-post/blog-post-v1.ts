@@ -49,5 +49,6 @@ export const BlogPostV1Sample: BlogPostV1Type = {
   },
   name: "My Blog Post",
   tags: ["technology", "programming"],
+  updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
 };
