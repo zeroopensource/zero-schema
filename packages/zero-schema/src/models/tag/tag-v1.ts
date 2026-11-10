@@ -14,7 +14,7 @@ export type TagV1InputType = z.infer<typeof TagV1Input>;
 export const TagV1InputSample: TagV1InputType = {
   $schema:
     "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
-  description: "This is the content of my tag.",
+  description: "This is the content of my Tag.",
   metadata: {},
   name: "My Tag",
   tags: ["technology", "programming"],
@@ -32,7 +32,7 @@ export const TagV1Sample: TagV1Type = {
   $schema:
     "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
   createdAt: new Date().toISOString(),
-  description: "This is the content of my tag.",
+  description: "This is the content of my Tag.",
   id: crypto.randomUUID(),
   metadata: {},
   name: "My Tag",
