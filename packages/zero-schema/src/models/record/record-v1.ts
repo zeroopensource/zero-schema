@@ -10,8 +10,8 @@ export const RecordV1Input = z
     zeroId: z.string().optional(),
   })
   .meta({
-    description: "Record Schema",
-    title: "RecordV1",
+    description: "Record Input Schema",
+    title: "RecordV1Input",
   });
 export type RecordV1InputType = z.infer<typeof RecordV1Input>;
 export const RecordV1InputSample: RecordV1InputType = {

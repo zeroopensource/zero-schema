@@ -12,7 +12,9 @@
     "...",
     "---Index Schemas---",
     "zero-schema/index-v1-schema",
+    "zero-schema/index-v1-input-schema",
     "zero-schema/record-v1-schema",
+    "zero-schema/record-v1-input-schema",
     "---Schemas---",
     "...zero-schema"
   ]
