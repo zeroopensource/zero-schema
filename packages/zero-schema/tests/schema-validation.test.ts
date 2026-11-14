@@ -1,10 +1,11 @@
+import type { AnySchema } from "ajv/dist/2020.js";
 import Ajv from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import fs from "fs-extra";
 import klaw from "klaw";
 import { describe, expect, it } from "vitest";
 
-const schemasDirs = ["dist/public/zero-schema"];
+const modelDirs = ["src/models"];
 
 async function findJsonFiles(dir: string): Promise<string[]> {
   const files: string[] = [];
@@ -16,29 +17,31 @@ async function findJsonFiles(dir: string): Promise<string[]> {
   return files;
 }
 
-describe("Schema Validation", () => {
-  it("should compile every JSON schema in schemasDirs recursively", async () => {
-    const schemaFiles = (
-      await Promise.all(schemasDirs.map((dir) => findJsonFiles(dir)))
-    ).flat();
-    expect(schemaFiles.length).toBeGreaterThan(0);
+const files = (await Promise.all(modelDirs.map(findJsonFiles))).flat();
 
+describe("JSON schemas validation", () => {
+  it.each(files)("validates %s against its fetched $schema", async (file) => {
     const ajv = new Ajv({ allErrors: true, strict: false });
     addFormats(ajv);
 
-    const schemas = await Promise.all(
-      schemaFiles.map(async (file) => {
-        const schema = await fs.readJson(file);
-        if (!schema.$schema) {
-          throw new Error(`${file} is missing the $schema property`);
-        }
-        ajv.addSchema(schema);
-        return { file, schema };
-      })
-    );
+    const document: unknown = await fs.readJson(file);
+    const schemaUrl =
+      typeof (document as { $schema?: unknown } | null)?.$schema === "string"
+        ? (document as { $schema: string }).$schema
+        : "";
 
-    for (const { file, schema } of schemas) {
-      expect(ajv.getSchema(schema.$id), `${file} should compile`).toBeDefined();
-    }
+    const response = await fetch(schemaUrl);
+    expect(
+      response.ok,
+      `fetching ${schemaUrl} for ${file} returned HTTP ${response.status}`
+    ).toBe(true);
+
+    const schema = (await response.json()) as AnySchema;
+    const validate = ajv.compile(schema);
+    const valid = validate(document);
+    expect(
+      valid,
+      `${file} does not satisfy ${schemaUrl}: ${ajv.errorsText(validate.errors)}`
+    ).toBe(true);
   });
 });
