@@ -20,8 +20,11 @@ async function findJsonFiles(dir: string): Promise<string[]> {
 const files = (await Promise.all(modelDirs.map(findJsonFiles))).flat();
 
 describe("JSON schemas validation", () => {
-  it.each(files)("validates %s against its fetched $schema", async (file) => {
-    const ajv = new Ajv({ allErrors: true, strict: false });
+  it.each(files)("validates %s against its $schema", async (file) => {
+    const ajv = new Ajv({
+      allErrors: true,
+      strict: true,
+    });
     addFormats(ajv);
 
     const document: unknown = await fs.readJson(file);
@@ -30,13 +33,12 @@ describe("JSON schemas validation", () => {
         ? (document as { $schema: string }).$schema
         : "";
 
-    const response = await fetch(schemaUrl);
-    expect(
-      response.ok,
-      `fetching ${schemaUrl} for ${file} returned HTTP ${response.status}`
-    ).toBe(true);
+    const localSchemaUrl = schemaUrl.replace(
+      "https://zero-schema.zeroopensource.org/zero-schema/",
+      "dist/public/zero-schema/"
+    );
+    const schema = (await fs.readJson(localSchemaUrl)) as AnySchema;
 
-    const schema = (await response.json()) as AnySchema;
     const validate = ajv.compile(schema);
     const valid = validate(document);
     const validationErrors = (validate.errors ?? []).map((error) => {
