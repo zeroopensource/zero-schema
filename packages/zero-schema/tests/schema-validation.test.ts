@@ -16,7 +16,7 @@ async function findJsonFiles(dir: string): Promise<string[]> {
   return files;
 }
 
-describe("BlogPost JSON Schema", () => {
+describe("Schema Validation", () => {
   it("should compile every JSON schema in schemasDirs recursively", async () => {
     const schemaFiles = (
       await Promise.all(schemasDirs.map((dir) => findJsonFiles(dir)))
