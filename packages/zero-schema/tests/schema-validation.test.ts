@@ -39,9 +39,16 @@ describe("JSON schemas validation", () => {
     const schema = (await response.json()) as AnySchema;
     const validate = ajv.compile(schema);
     const valid = validate(document);
+    const validationErrors = (validate.errors ?? []).map((error) => {
+      const path = error.instancePath || "/";
+      const params = Object.keys(error.params).length
+        ? ` (${JSON.stringify(error.params)})`
+        : "";
+      return `  ${path} [${error.keyword}] ${error.message}${params}`;
+    });
     expect(
       valid,
-      `${file} does not satisfy ${schemaUrl}: ${ajv.errorsText(validate.errors)}`
+      `${file} does not satisfy ${schemaUrl}:\n${validationErrors.join("\n")}`
     ).toBe(true);
   });
 });
