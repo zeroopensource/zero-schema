@@ -14,6 +14,7 @@
     "prepack": "turbo run prepack",
     "release": "pnpm run build && changeset publish",
     "start": "turbo run start",
+    "test": "turbo run test",
     "version": "changeset version"
   },
   "devDependencies": {

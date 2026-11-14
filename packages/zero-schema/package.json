@@ -48,6 +48,7 @@
   "devDependencies": {
     "@prisma/studio": "^0.502.0",
     "@types/fs-extra": "^11.0.1",
+    "@types/klaw": "^3.0.8",
     "concurrently": "^8.2.0",
     "dotenv-cli": "^7.2.1",
     "fs-extra": "^11.1.1",
