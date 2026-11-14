@@ -1,0 +1,15 @@
+{
+  "$schema": "https://zero-schema.zeroopensource.org/zero-schema/blog-post-v1-schema.json",
+  "description": "This is the content of my BlogPost.",
+  "metadata": {
+    "authors": [],
+    "isListed": true,
+    "isPublished": true
+  },
+  "name": "My BlogPost",
+  "tags": ["technology", "programming"],
+  "zeroId": "",
+  "id": "",
+  "createdAt": "2026-11-12T06:00:00Z",
+  "updatedAt": "2026-11-12T06:00:00Z"
+}
