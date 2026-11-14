@@ -1,5 +1,5 @@
 {
-  "$schema": "https://zero-schema.zeroopensource.org/zero-schema/blogpost-v1-schema.json",
+  "$schema": "https://zero-schema.zeroopensource.org/zero-schema/blog-post-v1-schema.json",
   "description": "This is the content of my BlogPost.",
   "metadata": {
     "authors": [],
