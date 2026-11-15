@@ -2,6 +2,7 @@
 import path from "node:path";
 import fs from "fs-extra";
 import klaw from "klaw";
+import {docsPath} from "./generate-docs";
 
 const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
   const files: string[] = [];
@@ -40,6 +41,10 @@ const patchLinks = (content: string): string => {
   return patch2;
 };
 
+const mergeDocs = async () => {
+  
+}
+
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
   const markdownFiles = await findMarkdownFiles(docsPath);
   await Promise.all(
@@ -62,6 +67,7 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
       }
     })
   );
+  await mergeDocs();
   console.log(
     `Patched ${markdownFiles.length} JSON Schema docs in ${docsPath}`
   );
