@@ -18,14 +18,18 @@ const findMarkdownFiles = async (docsPath: string): Promise<string[]> => {
   return files;
 };
 
-const patchLinks = async (content: string): Promise<string> => {
+const patchLinks = (content: string): string => {
   const patch1 = content.replaceAll("public/", "");
-  const schemaUrl = patch1.match(/```txt\s*\r?\n(https?:\/\/[^\s`]+)\s*\r?\n```/)?.[1];
+  const schemaUrl = patch1.match(
+    /```txt\s*\r?\n(https?:\/\/[^\s`]+)\s*\r?\n```/
+  )?.[1];
   const patch2 = schemaUrl
     ? patch1.replace(
         /\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g,
         (link, label: string, target: string, title?: string) => {
-          if (!/\.(?:md|json)(?:#.*)?$/i.test(target)) return link;
+          if (!/\.(?:md|json)(?:#.*)?$/i.test(target)) {
+            return link;
+          }
           const fragment =
             title?.match(/#\S+/)?.[0] ?? target.match(/#.*$/)?.[0] ?? "";
           const titleAttribute = title ? ` "${title}"` : "";
@@ -33,8 +37,8 @@ const patchLinks = async (content: string): Promise<string> => {
         }
       )
     : patch1;
-  return patch2
-}
+  return patch2;
+};
 
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
   const markdownFiles = await findMarkdownFiles(docsPath);
@@ -62,5 +66,3 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
     `Patched ${markdownFiles.length} JSON Schema docs in ${docsPath}`
   );
 };
-
-
