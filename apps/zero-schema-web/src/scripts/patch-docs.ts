@@ -41,8 +41,38 @@ const patchLinks = (content: string): string => {
   return patch2;
 };
 
-const mergeDocs = async () => {
-  
+export const mergeDocs = async (docsPath: string) => {
+  const markdownFiles = await findMarkdownFiles(docsPath);
+  const inputSchemaSuffix = "-input-schema.md";
+
+  await Promise.all(
+    markdownFiles
+      .filter((markdownFile) => markdownFile.endsWith(inputSchemaSuffix))
+      .map(async (inputSchemaFile) => {
+        const schemaFile = inputSchemaFile.replace(
+          inputSchemaSuffix,
+          "-schema.md"
+        );
+        if (!(await fs.pathExists(schemaFile))) {
+          return;
+        }
+
+        const [schemaContent, inputSchemaContent] = await Promise.all([
+          fs.readFile(schemaFile, "utf8"),
+          fs.readFile(inputSchemaFile, "utf8"),
+        ]);
+        const inputBody = inputSchemaContent.replace(
+          /^---\r?\n[\s\S]*?\r?\n---\r?\n*/,
+          ""
+        );
+        await fs.writeFile(
+          schemaFile,
+          `${schemaContent.trimEnd()}\n\n${inputBody.trimStart()}`,
+          "utf8"
+        );
+        await fs.remove(inputSchemaFile);
+      })
+  );
 }
 
 export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
@@ -67,7 +97,7 @@ export const patchDocs = async ({ docsPath }: { docsPath: string }) => {
       }
     })
   );
-  await mergeDocs();
+  await mergeDocs(docsPath);
   console.log(
     `Patched ${markdownFiles.length} JSON Schema docs in ${docsPath}`
   );
