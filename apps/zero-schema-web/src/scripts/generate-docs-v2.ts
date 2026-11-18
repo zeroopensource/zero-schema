@@ -31,7 +31,13 @@ const generateDocsV2 = async () => {
             ? schema.title
             : path.basename(fileName, ".json");
           
-        const markdown = ``
+        const markdown = `
+        # ${title} Schema
+
+        \`\`\`
+        ${schemaPath}
+        \`\`\`
+        `
        
         await fs.writeFile(
           path.join(docsPath, `${path.basename(fileName, ".json")}.md`),
