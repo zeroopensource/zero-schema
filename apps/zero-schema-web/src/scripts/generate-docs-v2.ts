@@ -26,16 +26,12 @@ const generateDocsV2 = async () => {
           string,
           unknown
         >;
-        const title =
-          typeof schema.title === "string"
-            ? schema.title
-            : path.basename(fileName, ".json");
-          
-        const markdown = `# ${title} Schema\n\n\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``;
+       
+        const markdown = `# ${schema.title} Schema\n\n\`\`\`\n${schema.$id}\n\`\`\`\n\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``;
        
         await fs.writeFile(
           path.join(docsPath, `${path.basename(fileName, ".json")}.md`),
-          `---\ntitle: ${title}\n---\n\n${markdown}\n`,
+          `---\ntitle: ${schema.title}\n---\n\n${markdown}\n`,
           "utf8"
         );
       })
