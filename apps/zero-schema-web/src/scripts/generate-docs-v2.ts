@@ -27,7 +27,7 @@ const generateDocsV2 = async () => {
           unknown
         >;
        
-        const markdown = `# ${schema.title} Schema\n\n\`\`\`\n${schema.$id}\n\`\`\`\n\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``;
+        const markdown = `# ${schema.title} Schema\n\n\`\`\`\n${schema.$id}\n\`\`\`\n\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\`\n\n`;
        
         await fs.writeFile(
           path.join(docsPath, `${path.basename(fileName, ".json")}.md`),
