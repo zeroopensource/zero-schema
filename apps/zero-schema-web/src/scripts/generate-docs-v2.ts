@@ -21,13 +21,17 @@ const generateDocsV2 = async () => {
     await Promise.all(
       schemaFiles.map(async (fileName) => {
         const schemaPath = path.join(publicSchemaPath, fileName);
-        
         const schema = (await fs.readJson(schemaPath)) as Record<
           string,
           unknown
         >;
-       
-        const markdown = `# ${schema.title} Schema\n\n\`\`\`\n${schema.$id}\n\`\`\`\n\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``;
+
+        const parts = [
+          `# ${schema.title} Schema`,
+          `\`\`\`\n${schema.$id}\n\`\`\``,
+          `\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``
+        ]
+        const markdown = parts.join("\n");
        
         await fs.writeFile(
           path.join(docsPath, `${path.basename(fileName, ".json")}.md`),
