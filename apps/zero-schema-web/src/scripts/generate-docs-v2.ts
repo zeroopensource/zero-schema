@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
-import {mergeDocs} from "./patch-docs";
+import { mergeDocs } from "./patch-docs";
 
 const sourceSchemaPath = path.resolve(
   "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
@@ -21,18 +21,18 @@ const generateDocsV2 = async () => {
     await Promise.all(
       schemaFiles.map(async (fileName) => {
         const schemaPath = path.join(publicSchemaPath, fileName);
-        const schema = (await fs.readJson(schemaPath)) as Record<
-          string,
-          unknown
-        >;
+        const { examples, ...schema } = (await fs.readJson(
+          schemaPath
+        )) as Record<string, unknown>;
 
         const parts = [
           `# ${schema.title} Schema`,
           `\`\`\`\n${schema.$id}\n\`\`\``,
-          `\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``
-        ]
+          `\`\`\`json\n${JSON.stringify(examples, null, 2)}\n\`\`\``,
+          `\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``,
+        ];
         const markdown = parts.join("\n");
-       
+
         await fs.writeFile(
           path.join(docsPath, `${path.basename(fileName, ".json")}.md`),
           `---\ntitle: ${schema.title}\n---\n\n${markdown}\n`,

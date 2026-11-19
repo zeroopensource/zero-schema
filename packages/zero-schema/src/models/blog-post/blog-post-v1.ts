@@ -2,7 +2,7 @@ import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 import { RecordV1, RecordV1Input } from "../record/record-v1";
 
-export const BlogPostV1Sample: BlogPostV1Type = {
+export const BlogPostV1Example: BlogPostV1Type = {
   $schema:
     "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
   createdAt: new Date().toISOString(),
@@ -19,9 +19,9 @@ export const BlogPostV1Sample: BlogPostV1Type = {
   zeroId: generateZeroId(),
 };
 
-const { id, createdAt, updatedAt, ...inputSample } = BlogPostV1Sample;
-export const BlogPostV1InputSample: BlogPostV1InputType = {
-  ...inputSample,
+const { id, createdAt, updatedAt, ...inputExample } = BlogPostV1Example;
+export const BlogPostV1InputExample: BlogPostV1InputType = {
+  ...inputExample,
 };
 
 export const BlogPostV1Metadata = z.strictObject({
