@@ -2,26 +2,6 @@ import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 import { RecordV1, RecordV1Input } from "../record/record-v1";
 
-export const BlogPostV1Sample: BlogPostV1Type = {
-  $schema:
-    "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
-  createdAt: new Date().toISOString(),
-  description: "This is the content of my BlogPost.",
-  id: crypto.randomUUID(),
-  metadata: {
-    authors: [],
-    isListed: true,
-    isPublished: true,
-  },
-  name: "My BlogPost",
-  tags: ["technology", "programming"],
-  updatedAt: new Date().toISOString(),
-  zeroId: generateZeroId(),
-};
-export const BlogPostV1InputSample: BlogPostV1InputType = {
-  ...BlogPostV1Sample
-};
-
 export const BlogPostV1Metadata = z.strictObject({
   authors: z.array(z.string()),
   isListed: z.boolean(),
@@ -45,3 +25,24 @@ export const BlogPostV1 = RecordV1.extend({
   examples:[]
 });
 export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
+
+export const BlogPostV1Sample: BlogPostV1Type = BlogPostV1.parse({
+  $schema:
+    "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
+  createdAt: new Date().toISOString(),
+  description: "This is the content of my BlogPost.",
+  id: crypto.randomUUID(),
+  metadata: {
+    authors: [],
+    isListed: true,
+    isPublished: true,
+  },
+  name: "My BlogPost",
+  tags: ["technology", "programming"],
+  updatedAt: new Date().toISOString(),
+  zeroId: generateZeroId(),
+})
+
+export const BlogPostV1InputSample: BlogPostV1InputType = BlogPostV1Input.parse({
+  ...BlogPostV1Sample
+})
