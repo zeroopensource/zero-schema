@@ -67,7 +67,7 @@ export const mergeDocs = async (docsPath: string) => {
         );
         await fs.writeFile(
           schemaFile,
-          `${schemaContent.trimEnd()}\n\n${inputBody.trimStart()}`,
+          `${schemaContent.trimEnd()}\n---\n${inputBody.trimStart()}`,
           "utf8"
         );
         await fs.remove(inputSchemaFile);
