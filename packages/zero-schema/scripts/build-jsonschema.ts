@@ -31,7 +31,9 @@ const buildJsonSchemas = async () => {
   await Promise.all(
     Object.entries(schemas).map(async ([name, schema]) => {
       const example = (exports as Record<string, unknown>)[`${name}Example`];
-      await buildJsonSchema(name, schema.meta({ examples: [example] }));
+      const examples =
+        example === undefined || example === null ? [] : [example];
+      await buildJsonSchema(name, schema.meta({ examples }));
     })
   );
 };

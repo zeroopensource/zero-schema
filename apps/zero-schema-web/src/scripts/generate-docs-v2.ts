@@ -24,11 +24,15 @@ const generateDocsV2 = async () => {
         const { examples, ...schema } = (await fs.readJson(
           schemaPath
         )) as Record<string, unknown>;
+        const examplesContent =
+          Array.isArray(examples) && examples.length === 0
+            ? "No examples available"
+            : JSON.stringify(examples, null, 2);
 
         const parts = [
           `# ${schema.title} Schema`,
           `\`\`\`\n${schema.$id}\n\`\`\``,
-          `\`\`\`json\n${JSON.stringify(examples, null, 2)}\n\`\`\``,
+          `\`\`\`json\n${examplesContent}\n\`\`\``,
           `\`\`\`json\n${JSON.stringify(schema, null, 2)}\n\`\`\``,
         ];
         const markdown = parts.join("\n");
