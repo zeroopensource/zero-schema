@@ -12,7 +12,7 @@
     "dev:next": "dotenv -e .env -- next dev",
     "fix:next-out": "tsx src/lib/fix-next-out.ts",
     "format": "biome format --write",
-    "generate-docs": "tsx src/scripts/generate-docs.ts",
+    "generate-docs": "tsx src/scripts/generate-docs-v2.ts",
     "lint": "biome check",
     "patch-docs": "tsx src/scripts/patch-docs.ts",
     "serve": "pnpm build && serve out",
@@ -78,6 +78,7 @@
     "rimraf": "^6.1.3",
     "shadcn": "^4.21.0",
     "tailwindcss": "^4",
-    "tsx": "^4.23.15"
+    "tsx": "^4.23.15",
+    "wetzel": "^0.2.3"
   }
 }

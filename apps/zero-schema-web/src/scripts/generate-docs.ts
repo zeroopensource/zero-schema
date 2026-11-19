@@ -3,11 +3,11 @@ import { main as jsonschema2md } from "@adobe/jsonschema2md";
 import fs from "fs-extra";
 import { patchDocs } from "./patch-docs";
 
-const sourceSchemaPath = path.resolve(
+export const sourceSchemaPath = path.resolve(
   "./node_modules/@zeroopensource/zero-schema/dist/public/zero-schema"
 );
-const publicSchemaPath = path.resolve("./public/zero-schema");
-const docsPath = path.resolve("./content/docs/zero-schema");
+export const publicSchemaPath = path.resolve("./public/zero-schema");
+export const docsPath = path.resolve("./content/docs/zero-schema");
 const runJsonschema2md = jsonschema2md as unknown as (
   args: string[]
 ) => Promise<number>;

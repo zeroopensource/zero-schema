@@ -4,9 +4,12 @@ import { z } from "zod";
 import { schemas } from "./../src/index";
 
 const toKebabCase = (value: string) =>
-  value.replace(/[A-Z]/g, (letter, index) => `${index > 0 ? "-" : ""}${letter.toLowerCase()}`);
+  value.replace(
+    /[A-Z]/gu,
+    (letter, index) => `${index > 0 ? "-" : ""}${letter.toLowerCase()}`
+  );
 
-const schemaUrl = 'https://zero-schema.zeroopensource.org/zero-schema'
+const schemaUrl = "https://zero-schema.zeroopensource.org/zero-schema";
 
 const buildJsonSchema = async (name: string, schema: z.ZodObject) => {
   const jsonSchema = z.toJSONSchema(schema);
@@ -23,9 +26,13 @@ const buildJsonSchema = async (name: string, schema: z.ZodObject) => {
   console.log(`Generated ${outputPath}`);
 };
 
-const buildJsonSchemas = () => {
-  for (const [name, schema] of Object.entries(schemas)) {
-    buildJsonSchema(name, schema);
-  }
+const buildJsonSchemas = async () => {
+  const exports = await import("./../src/index");
+  await Promise.all(
+    Object.entries(schemas).map(async ([name, schema]) => {
+      const example = (exports as Record<string, unknown>)[`${name}Example`];
+      await buildJsonSchema(name, schema.meta({ examples: [example] }));
+    })
+  );
 };
 buildJsonSchemas();
