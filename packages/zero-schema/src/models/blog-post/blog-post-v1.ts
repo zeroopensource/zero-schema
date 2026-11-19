@@ -35,7 +35,6 @@ export const BlogPostV1Input = RecordV1Input.extend({
 }).meta({
   description: "BlogPost Input Schema",
   title: "BlogPostV1Input",
-  examples: [],
 });
 export type BlogPostV1InputType = z.infer<typeof BlogPostV1Input>;
 
@@ -44,6 +43,5 @@ export const BlogPostV1 = RecordV1.extend({
 }).meta({
   description: "BlogPost Schema",
   title: "BlogPostV1",
-  examples: [],
 });
 export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
