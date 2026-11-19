@@ -2,31 +2,7 @@ import { generateZeroId } from "@zeroopensource/zero-id";
 import { z } from "zod";
 import { RecordV1, RecordV1Input } from "../record/record-v1";
 
-export const BlogPostV1Metadata = z.strictObject({
-  authors: z.array(z.string()),
-  isListed: z.boolean(),
-  isPublished: z.boolean(),
-});
-
-export const BlogPostV1Input = RecordV1Input.extend({
-  metadata: BlogPostV1Metadata,
-}).meta({
-  description: "BlogPost Input Schema",
-  title: "BlogPostV1Input",
-  examples: []
-});
-export type BlogPostV1InputType = z.infer<typeof BlogPostV1Input>;
-
-export const BlogPostV1 = RecordV1.extend({
-  metadata: BlogPostV1Metadata,
-}).meta({
-  description: "BlogPost Schema",
-  title: "BlogPostV1",
-  examples:[]
-});
-export type BlogPostV1Type = z.infer<typeof BlogPostV1>;
-
-export const BlogPostV1Sample: BlogPostV1Type = BlogPostV1.parse({
+export const BlogPostV1Sample: BlogPostV1Type = {
   $schema:
     "https://zero-schema.zeroopensource.org/zero-schema/record-v1-schema.json",
   createdAt: new Date().toISOString(),
@@ -41,8 +17,33 @@ export const BlogPostV1Sample: BlogPostV1Type = BlogPostV1.parse({
   tags: ["technology", "programming"],
   updatedAt: new Date().toISOString(),
   zeroId: generateZeroId(),
-})
+};
 
-export const BlogPostV1InputSample: BlogPostV1InputType = BlogPostV1Input.parse({
-  ...BlogPostV1Sample
-})
+const { id, createdAt, updatedAt, ...inputSample } = BlogPostV1Sample;
+export const BlogPostV1InputSample: BlogPostV1InputType = {
+  ...inputSample,
+};
+
+export const BlogPostV1Metadata = z.strictObject({
+  authors: z.array(z.string()),
+  isListed: z.boolean(),
+  isPublished: z.boolean(),
+});
+
+export const BlogPostV1Input = RecordV1Input.extend({
+  metadata: BlogPostV1Metadata,
+}).meta({
+  description: "BlogPost Input Schema",
+  title: "BlogPostV1Input",
+  examples: [],
+});
+export type BlogPostV1InputType = z.infer<typeof BlogPostV1Input>;
+
+export const BlogPostV1 = RecordV1.extend({
+  metadata: BlogPostV1Metadata,
+}).meta({
+  description: "BlogPost Schema",
+  title: "BlogPostV1",
+  examples: [],
+});
+export type BlogPostV1Type = z.infer<typeof BlogPostV1>;

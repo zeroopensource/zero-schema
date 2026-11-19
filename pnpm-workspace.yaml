@@ -9,3 +9,5 @@ allowBuilds:
   prisma: true
   unrs-resolver: true
 
+minimumReleaseAgeExclude:
+  - ultracite@8.3.1

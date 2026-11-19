@@ -18,7 +18,7 @@
     "version": "changeset version"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.6.7",
+    "@biomejs/biome": "2.6.8",
     "@changesets/changelog-github": "^0.6.0",
     "@changesets/cli": "2.30.0",
     "@types/node": "25.5.2",
@@ -29,7 +29,7 @@
     "tsdown": "^0.21.7",
     "turbo": "^2.11.9",
     "typescript": "6.0.2",
-    "ultracite": "8.0.1",
+    "ultracite": "8.3.1",
     "vitest": "^4.1.2"
   },
   "packageManager": "pnpm@12.18.0",
